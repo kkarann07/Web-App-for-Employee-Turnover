@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+  <div style="background-image: url('maxresdefault.jpg');background-size: cover;padding: 0;margin: 0;background-attachment: fixed;background-position: center;background-repeat: no-repeat;margin: -20px 0px;opacity: .9;filter: blur();" >
+    <br>
+    <br>
+    <center>
+    <div style="width: 600px;border-radius: 5px;;padding: 20px;">
+    <h1 class="jumbotron" style="background: transparent;font-weight: bold;">Enter values in field</h1>
+    {% from "includes/_formhelpers.html" import render_field %}
+
+    <form method="POST" action="">
+    <div class="form-group">
+      {{render_field(form.satisfaction_level, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.last_evaluation, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.number_project, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.avg_monthly_hours, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.time_spent, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.work_accident, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.promotion, class_="form-control")}}
+    </div>
+    <div class="form-group">
+        {{render_field(form.salary, class_="form-control")}}
+      </div>
+      <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+    </form>
+    </div>
+    </center>
+
+    <style type="text/css">
+      form input[class='form-control']{
+        border: #000000 solid 1px;  
+        color: #000;
+      }
+      form input[class='form-control']:hover{
+        transform: translateY(-2px);
+        box-shadow: 0 0 10px #37cdfb;
+      }
+      .sp{
+        float: left;
+      }
+      label{
+        color: #f2f2f2;
+        float: left;
+        font-weight:normal;
+        font-size: 20px; 
+      }
+    </style>
+  </div> 
+{% endblock %}

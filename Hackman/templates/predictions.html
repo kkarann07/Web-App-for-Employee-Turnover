@@ -1,0 +1,274 @@
+{% extends 'layout.html' %}
+{% block body %}
+<br>
+<br>
+ 	<div style="background-image:url('b3.jpg'); ;background-attachment:fixed;background-position: center;background-repeat: no-repeat;padding: 20px">
+ 		<!-- linear-gradient(to right, gray, #ffff80) -->
+ 		<div class="container">
+ 			<div class="row">
+ 				<div class="col-sm-6">
+ 					<u><h1>INPUTS</h1></u>
+			 		<div style="color:#000;font-size: 20px; border: ">
+			 			<p>Satisfaction Level : {{inputs['satisfaction_level']}}</p>
+			 			<p>Last evaluation : {{inputs['last_evaluation']}}</p>
+			 			<p>Number project : {{inputs['number_project']}}</p>
+			 			<p>Avg_monthly_hours : {{inputs['avg_monthly_hours']}}</p>
+			 			<p>Time spent : {{inputs['time_spent']}}</p>
+			 			<p>Work accident : {{inputs['work_accident']}}</p>
+			 			<p>Promotion : {{inputs['promotion']}}</p>
+			 			<p>Salary : {{inputs['salary']}}</p>
+			 		</div>
+ 				</div>
+ 				<div class="col-sm-6">
+ 					<h1>RESULT:
+						{% if prediction == '0' %}
+						 
+						 <p> Employee will <span style="color: green">STAY</span> :)</p>
+						  <img src="h134.png" style="width: 400px;height: 300px;">
+						{% else %}
+						 
+						 <p>Employee may <span style="color: red"> QUIT</span> (x_x)</p>
+						  <img src="a.jpg" style="width: 400px;height: auto;" >
+						  {% if (inputs['satisfaction_level']>= '0.7' and inputs['satisfaction_level']<='0.9') %}
+						   <ul >
+						   <li><span style="font-weight: lighter;"> Employee has satisfaction problem</span></li>
+						</ul>
+						   {% endif %}
+						    {% if (inputs['avg_monthly_hours']>= '220' and inputs['satisfaction_level']<='280') %}
+						   <ul>
+						   	<li><span style="font-size: : 12;">Employee has workload problem. </span></li>
+						   </ul>	
+						   {% endif %}
+						   {% if (inputs['last_evaluation']>= '0.45' and inputs['last_evaluation']<='0.55') %}
+						   <ul>
+						   	<li><span style="font-size: : 12;">Employee has evaluation related problem. </span></li>
+						   </ul>	
+						   {% endif %}
+						{% endif %}
+						<h1>
+						<!-- Probability: {{predict_prob}} -->
+						<br>
+					</h1>
+ 				</div>
+ 			</div>
+ 		</div>
+ 		
+
+ 		<div class="container">
+ 			<div class="row">
+ 				<div class="col-sm-6">
+				<button type="button" class="btn btn-lg" style="background: #000;color: #fff" data-toggle="modal" data-target="#modal1">Turnover vs Salary</button><br><br>
+				<button type="button" class="btn btn-lg" style="background: #000;color: #fff" data-toggle="modal" data-target="#modal2">Employee Department turnover distribution</button><br><br>
+				<button type="button" class="btn btn-lg" style="background: #000;color: #fff" data-toggle="modal" data-target="#modal3">Employee vs time spend</button><br><br>
+				<button type="button" class="btn btn-lg" style="background: #000;color: #fff" data-toggle="modal" data-target="#modal4">No of Employee vs no of projects</button><br><br>
+				<button type="button" class="btn btn-lg" style="background: #000;color: #fff" data-toggle="modal" data-target="#modal5">Employee Evaluation</button><br><br>
+ 				</div>
+ 				<div class="col-sm-6">
+ 				<button type="button" class="btn btn-lg" style="background: #000;color: #fff" data-toggle="modal" data-target="#modal6">Employee satisfaction Distribution</button><br><br>
+				<button type="button" class="btn btn-lg" style="background: #000;color: #fff" data-toggle="modal" data-target="#modal7">Monthly hours distribution</button><br><br>
+				<button type="button" class="btn btn-lg" style="background: #000;color: #fff" data-toggle="modal" data-target="#modal8">avg monthly hours vs satisfaction level</button><br><br>
+				<button type="button" class="btn btn-lg" style="background: #000;color: #fff" data-toggle="modal" data-target="#modal9">Last evaluation vs avg monthly hours</button><br><br>
+				<button type="button" class="btn btn-lg" style="background: #000;color: #fff" data-toggle="modal" data-target="#modal10">Last evaluation vs satisfaction level</button><br><br>
+ 				</div>
+ 			</div>
+ 		</div>
+
+ 		
+
+
+		
+
+		<!-- Modal1 -->
+		<div id="modal1" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Turnover vs Salary</h4>
+		      </div>
+		      <div class="modal-body">
+		      		<img src="capture1.png" style="width: 500px;">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<div id="modal2" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Employee Department turnover distribution</h4>
+		      </div>
+		      <div class="modal-body">
+		        <img src="capture2.png" style="width: 500px;">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<div id="modal3" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Employee vs time spend</h4>
+		      </div>
+		      <div class="modal-body">
+		        <img src="capture3.png" style="width: 500px;">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<div id="modal4" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">No of Employee vs no of projects</h4>
+		      </div>
+		      <div class="modal-body">
+		        <img src="capture4.png" style="width: 500px;">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<div id="modal5" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Employee Evaluation</h4>
+		      </div>
+		      <div class="modal-body">
+		        <img src="capture5.png" style="width: 500px;">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<div id="modal6" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Employee satisfaction Distribution</h4>
+		      </div>
+		      <div class="modal-body">
+		        <img src="capture6.png" style="width: 500px;">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<div id="modal7" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Monthly hours distribution</h4>
+		      </div>
+		      <div class="modal-body">
+		        <img src="capture7.png" style="width: 500px;">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<div id="modal8" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">avg monthly hours vs satisfaction level</h4>
+		      </div>
+		      <div class="modal-body">
+		        <img src="capture8.png" style="width: 500px;">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<div id="modal9" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Last evaluation vs avg monthly hours</h4>
+		      </div>
+		      <div class="modal-body">
+		        <img src="capture9.png" style="width: 500px;">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<div id="modal10" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Last evaluation vs satisfaction level</h4>
+		      </div>
+		      <div class="modal-body">
+		        <img src="capture10.png" style="width: 500px;">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+
+ 	</div>
+{% endblock %}
